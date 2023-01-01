@@ -62,8 +62,8 @@ function clear() {
 function getSize() {
     var size;
     do {
-        size = prompt("Choose a grid size between 4-100");
-    } while (size < 4 || size > 100);
+        size = prompt("Choose a grid size between 1-100");
+    } while (size < 1 || size > 100);
     createGrid(size);
 }
 

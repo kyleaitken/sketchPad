@@ -9,6 +9,10 @@ body {
     align-items: center;
 }
 
+.button-container {
+    margin-bottom: 50px;
+}
+
 .container {
     display: grid;
     width: 500px;
