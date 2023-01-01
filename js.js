@@ -1,10 +1,26 @@
-const button = document.querySelector('.size-button');
+const buttons = document.querySelectorAll('.button-container');
 
-button.addEventListener('click', () => {
-    console.log("clicked button");
-    clear();
-    getSize();
-    shade();
+function generateColor() {
+    const randColor = Math.floor(Math.random()*16777215).toString(16);
+    return randColor;
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        let target = e.target;
+        console.log("clicked button");
+
+        if (target.id === 'size-button') {
+            clear();
+            getSize();
+            shade();
+        } else if (target.id === 'color-button') {
+            clear();
+            getSize();
+            let newColor = generateColor();
+            colorGraph(newColor);
+        };
+    });
 });
 
 const container = document.querySelector('.container');
@@ -17,16 +33,6 @@ function createGrid(size) {
     }
     document.getElementById("gridContainer").style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 }
-
-/*
-button.addEventListener('click', () => {
-    do {
-        size = prompt("Choose a grid size between 4-100 (ie. number of squares per side)");
-    } while (size < 4 || size > 100);
-    createGrid(size);
-    document.getElementById("gridContainer").style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-});
-*/
 
 
 function clear() {
@@ -52,12 +58,12 @@ function shade(){
     });
 };
 
-/*
-const boxes = document.querySelectorAll('.square');
-boxes.forEach((box) => {
-    box.addEventListener('mouseover', () => {
-        console.log("hovering");
-        box.style.cssText = 'background-color: lightblue';
+function colorGraph(newCol) {
+    const squares = document.querySelectorAll('#square');
+    squares.forEach((sqr) => {
+        sqr.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = "#" + newCol;
+        });
     });
-});
-*/
+};
+
